@@ -1,5 +1,25 @@
-# Snapmaker_ita_gui
+# Snapmaker U1/J1 - Italian GUI Mod 
 
-🇮🇹 Patch non invasiva che aggiunge la lingua Italiana alla GUI di Snapmaker sostituendo il dizionario russo. Nessuna compilazione richiesta, si installa con un singolo comando SSH. 
+Questa mod traduce **completamente in italiano** l'interfaccia grafica delle stampanti Snapmaker (Testata su firmware custom), mantenendo intatta la stabilità del sistema originale.
 
-🇬🇧 Non-invasive patch adding Italian language to Snapmaker GUI by replacing the Russian dictionary. No compilation required, installs via a single SSH command.
+## ⚠️ Avvertenze e Disclaimer
+* **Questa operazione modifica i file di sistema.** Lo script crea un backup in automatico, ma lo usi a tuo rischio e pericolo.
+* L'autore della mod e Snapmaker non si assumono responsabilità per eventuali malfunzionamenti o brick della macchina.
+* **NOTA BENE:** La mod sostituisce la lingua *Russa*. Dopo l'installazione, dovrai selezionare "Русский" nelle impostazioni della lingua per vedere l'Italiano.
+
+## 🛠 Come Installare la Mod
+
+1. Accendi la stampante e collegala al Wi-Fi.
+2. Trova l'indirizzo IP della stampante (Impostazioni > Rete).
+3. Apri il terminale del PC (o MobaXterm/PuTTY) e collegati via SSH:
+   `ssh root@INDIRIZZO_IP_STAMPANTE`
+   *(La password di default solitamente è `snapmaker`)*
+4. Copia e incolla questo comando nel terminale della stampante e premi Invio:
+   ```bash
+   wget -qO- [INSERISCI_QUI_IL_TUO_LINK_RAW] | python3
+Lo script farà tutto in automatico e riavvierà lo schermo in Italiano!
+
+🔄 Disinstallazione / Aggiornamento
+Se aggiorni il firmware ufficiale, la mod verrà cancellata. Per riaverla, lancia di nuovo il comando di installazione.
+Per tornare alla lingua originale senza formattare, lancia via SSH:
+cp /usr/bin/gui.bak /usr/bin/gui && killall gui
