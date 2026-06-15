@@ -1,6 +1,6 @@
 # Snapmaker U1/J1 - Italian GUI Mod 
 
-Questa mod traduce **completamente in italiano** l'interfaccia grafica delle stampanti Snapmaker (Testata su firmware custom), mantenendo intatta la stabilità del sistema originale.
+Questa mod traduce **completamente in italiano** l'interfaccia grafica delle stampanti Snapmaker (Testata su firmware custom v1.4.0-paxx12-18 e v1.4.1-paxx12-19), mantenendo intatta la stabilità del sistema originale.
 
 ## ⚠️ Avvertenze e Disclaimer
 * **Questa operazione modifica i file di sistema.** Lo script crea un backup in automatico, ma lo usi a tuo rischio e pericolo.
