@@ -6,7 +6,7 @@ Traduci l'interfaccia della tua stampante in Italiano in modo sicuro!
 import sys, os
 
 print("==========================================")
-print("  Snapmaker Italian GUI Patch - Mod v1.0  ")
+print("  Snapmaker Italian GUI Patch - Mod v1.1  ")
 print("==========================================\n")
 
 SRC  = '/usr/bin/gui'
