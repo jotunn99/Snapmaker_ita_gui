@@ -152,6 +152,8 @@ TRANSLATIONS = {
     'Макс. температура платформы': 'Temp. max piano',
     'Макс. температура сопла': 'Temp. max ugello',
     'Мин. температура сопла': 'Temp. min ugello',
+    'Аномалия движения по оси': 'Anomalia movimento asse',
+    'КранДом Сначала переместите ось Z.': 'Tocca prima Home, poi muovi l'asse Z.',
     'Нажмите на пустое поле, чтобы закрыть.': 'Tocca area vuota per chiudere.',
     'Снижение скорости вентилятора может повлиять на качество печати, продолжить?': "Ridurre velocità ventola può influire sulla qualità. Continuare?",
     'В данный момент включен режим внутренней циркуляции, внешний вентилятор не может быть включен': 'Circolazione interna attiva, ventola esterna non disponibile',
