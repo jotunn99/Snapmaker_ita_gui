@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Snapmaker U1/J1 - GUI Italian Patcher v1.0
+Snapmaker U1/J1 - GUI Italian Patcher v1.1
 Traduci l'interfaccia della tua stampante in Italiano in modo sicuro!
 """
 import sys, os
