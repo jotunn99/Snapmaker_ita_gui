@@ -15,7 +15,7 @@ DST  = '/tmp/gui_patched'
 
 # IL TUO DIZIONARIO COMPLETO
 TRANSLATIONS = {
-    'версия': "versione    ",
+    'версия': "versione" + " " * 4,
     'Must home Z axis first:': "Azzerare prima l'asse Z:",
     'ru-RU': 'it-IT',
     'Русский': 'Italiano',
