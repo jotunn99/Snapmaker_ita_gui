@@ -6,7 +6,7 @@ Traduci l'interfaccia della tua stampante in Italiano in modo sicuro!
 import sys, os
 
 print("==========================================")
-print("  Snapmaker Italian GUI Patch - Mod v1.1  ")
+print("  Snapmaker Italian GUI Patch - Mod v1.2  ")
 print("==========================================\n")
 
 SRC  = '/usr/bin/gui'
@@ -252,9 +252,9 @@ TRANSLATIONS = {
     'Калибровка не удалась': 'Calibrazione fallita',
     'Хотите выйти из процесса калибровки?': 'Uscire dalla calibrazione?',
     'Прервать выравнивание': 'Interrompi livellamento',
-    'Калибровка смещения нескольких печатающих головок': 'Calibrazione offset testine multiple',
+    'Калибровка смещения нескольких печатающих головок': '  Calibrazione offset testine',
     'Советы по калибровке смещения экструдеров': 'Suggerimenti calibrazione offset estrusori',
-    'Компенсация вибрации': 'Compensazione vibrazione',
+    'Компенсация вибрации': '  Compensazione vibrazione',
     'Советы по калибровке виброгасителей': 'Suggerimenti calibrazione ammortizzatori',
     'Прогресс выравнивания': 'Avanzamento livellamento',
     'Советы по калибровке нагревательной платформы': 'Suggerimenti calibrazione piano riscaldato',
@@ -320,7 +320,7 @@ TRANSLATIONS = {
     'Перед калибровкой поместите пластину PEI на место.': 'Posizionare la lastra PEI prima della calibrazione.',
     'Выполняется проверка установки PEI-пластины\u2026': 'Verifica installazione lastra PEI...',
     'Определение положения пластины PEI...': 'Rilevamento posizione lastra PEI...',
-    'Выравнивание нагреваемой платформы': 'Livellamento piano riscaldato',
+    'Выравнивание нагреваемой платформы': '  Livellamento piano riscaldato',
     'Калибровка смещения нескольких печатающих головок завершена. Установите PEI-пластину обратно на нагреваемый стол.': 'Calibrazione offset testine completata. Rimettere la lastra PEI sul piano riscaldato.',
     'Обнаружено, что PEI-пластина не снята. Снимите PEI-пластину и нажмите «Avanti': 'Lastra PEI non rimossa. Rimuoverla e premere Avanti',
     'PEI-пластина не обнаружена. Установите PEI-пластину на нагреваемый стол и нажмите «Avanti': 'Lastra PEI non trovata. Installarla sul piano riscaldato e premere Avanti',
@@ -458,7 +458,7 @@ TRANSLATIONS = {
     'Ложная тревога обратной связи': 'Segnala falso allarme',
     'Обнаружение печати в воздухе': 'Rilevamento spaghetti',
     'Обнаружение "спагетти"': 'Rilevamento "spaghetti"',
-    'Печать автоматически приостанавливается при обнаружении запутывания филамента или засорения сопла.': 'La stampa si ferma se viene rilevato groviglio o ostruzione ugello.',
+    'Печать автоматически приостанавливается при обнаружении запутывания филамента или засорения сопла.': 'La stampa si metterà in pausa in caso di groviglio o ugello ostruito.' + ' ' * 20,
     'Чувствительность обнаружения печати в воздухе': "Sensibilità rilevamento spaghetti",
     'Обнаружение наматывания': 'Rilevamento aggrovigliamento',
     'Никаких отклонений обнаружено не было;\nобнаружение ИИ было подтверждено как ложная тревога.': 'Nessuna anomalia rilevata;\nmonitoraggio AI confermato come falso allarme.',
