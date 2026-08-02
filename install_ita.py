@@ -17,7 +17,7 @@ DST  = '/tmp/gui_patched'
 TRANSLATIONS = {
     'Автоматическая дозаправка': 'Cambio automatico filamento',
     'Разрешить автоматическое продолжение печати филаментом другого цвета.': 'Consenti stampa continua con colore diverso.',
-    'При окончании филамента принтер может автоматически переключиться на филамент того же бренда и типа, но другого цвета, чтобы продолжить печать.': 'Se esaurito, passa a filamento di stessa marca e tipo ma colore diverso.',
+    'При окончании филамента принтер может автоматически переключиться на филамент того же бренда и типа, но другого цвета, чтобы продолжить печать.': 'Se esaurito, passa a un filamento della stessa marca e tipo, ma di colore diverso.' + ' ' * 20,
     'Автоматическое сопоставление нитей': 'Abbinamento automatico filamenti',
     'Система автоматически подбирает наиболее подходящий филамент на основе материала и цвета.': 'Il sistema seleziona il filamento più adatto per materiale e colore.',
     'Выключите светодиод после печати.': 'Spegni i LED a fine stampa.',
