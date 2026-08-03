@@ -6,23 +6,31 @@ Traduci l'interfaccia della tua stampante in Italiano in modo sicuro!
 import sys, os
 
 print("==========================================")
-print("  Snapmaker Italian GUI Patch - Mod v1.2  ")
+print("  Snapmaker Italian GUI Patch - Mod v1.3  ")
 print("==========================================\n")
 
 SRC  = '/usr/bin/gui'
 BAK  = '/usr/bin/gui.bak'
 DST  = '/tmp/gui_patched'
 
+# Margine di tolleranza sul numero di CARATTERI (non byte) che la stringa
+# italiana può avere in più rispetto a quella russa originale, prima di
+# essere scartata per rischio di sconfinamento grafico sui widget vicini.
+# 1.0  = nessuna tolleranza (stesso numero di caratteri, massima sicurezza)
+# 1.15 = fino al 15% di caratteri in più (buon compromesso, default)
+# 1.30 = più permissivo, più rischio di overlap su testi/bottoni vicini
+LUNGHEZZA_TOLLERANZA = 1.15
+
 # IL TUO DIZIONARIO COMPLETO
 TRANSLATIONS = {
     'Автоматическая дозаправка': 'Cambio automatico filamento',
     'Разрешить автоматическое продолжение печати филаментом другого цвета.': 'Consenti stampa continua con colore diverso.',
-    'При окончании филамента принтер может автоматически переключиться на филамент того же бренда и типа, но другого цвета, чтобы продолжить печать.': 'Se esaurito, passa a un filamento della stessa marca e tipo, ma di colore diverso.' + ' ' * 20,
+    'При окончании филамента принтер может автоматически переключиться на филамент того же бренда и типа, но другого цвета, чтобы продолжить печать.': 'Se esaurito, passa a un filamento della stessa marca e tipo, ma di colore diverso.',
     'Автоматическое сопоставление нитей': 'Abbinamento automatico filamenti',
     'Система автоматически подбирает наиболее подходящий филамент на основе материала и цвета.': 'Il sistema seleziona il filamento più adatto per materiale e colore.',
     'Выключите светодиод после печати.': 'Spegni i LED a fine stampa.',
-    'Низкий': '    Basso',
-    'Середина': '  Medio',
+    'Низкий': 'Basso',
+    'Середина': 'Medio',
     'Высокий': 'Alto',
     'Must home Z axis first:': "Azzerare prima l'asse Z:",
     'ru-RU': 'it-IT',
@@ -252,9 +260,9 @@ TRANSLATIONS = {
     'Калибровка не удалась': 'Calibrazione fallita',
     'Хотите выйти из процесса калибровки?': 'Uscire dalla calibrazione?',
     'Прервать выравнивание': 'Interrompi livellamento',
-    'Калибровка смещения нескольких печатающих головок': '  Calibrazione offset testine',
+    'Калибровка смещения нескольких печатающих головок': 'Calibrazione offset testine',
     'Советы по калибровке смещения экструдеров': 'Suggerimenti calibrazione offset estrusori',
-    'Компенсация вибрации': '  Compensazione vibrazione',
+    'Компенсация вибрации': 'Compensazione vibrazione',
     'Советы по калибровке виброгасителей': 'Suggerimenti calibrazione ammortizzatori',
     'Прогресс выравнивания': 'Avanzamento livellamento',
     'Советы по калибровке нагревательной платформы': 'Suggerimenti calibrazione piano riscaldato',
@@ -320,7 +328,7 @@ TRANSLATIONS = {
     'Перед калибровкой поместите пластину PEI на место.': 'Posizionare la lastra PEI prima della calibrazione.',
     'Выполняется проверка установки PEI-пластины\u2026': 'Verifica installazione lastra PEI...',
     'Определение положения пластины PEI...': 'Rilevamento posizione lastra PEI...',
-    'Выравнивание нагреваемой платформы': '  Livellamento piano riscaldato',
+    'Выравнивание нагреваемой платформы': 'Livellamento piano riscaldato',
     'Калибровка смещения нескольких печатающих головок завершена. Установите PEI-пластину обратно на нагреваемый стол.': 'Calibrazione offset testine completata. Rimettere la lastra PEI sul piano riscaldato.',
     'Обнаружено, что PEI-пластина не снята. Снимите PEI-пластину и нажмите «Avanti': 'Lastra PEI non rimossa. Rimuoverla e premere Avanti',
     'PEI-пластина не обнаружена. Установите PEI-пластину на нагреваемый стол и нажмите «Avanti': 'Lastra PEI non trovata. Installarla sul piano riscaldato e premere Avanti',
@@ -458,7 +466,7 @@ TRANSLATIONS = {
     'Ложная тревога обратной связи': 'Segnala falso allarme',
     'Обнаружение печати в воздухе': 'Rilevamento spaghetti',
     'Обнаружение "спагетти"': 'Rilevamento "spaghetti"',
-    'Печать автоматически приостанавливается при обнаружении запутывания филамента или засорения сопла.': 'La stampa si metterà in pausa in caso di groviglio o ugello ostruito.' + ' ' * 20,
+    'Печать автоматически приостанавливается при обнаружении запутывания филамента или засорения сопла.': 'La stampa si metterà in pausa in caso di groviglio o ugello ostruito.',
     'Чувствительность обнаружения печати в воздухе': "Sensibilità rilevamento spaghetti",
     'Обнаружение наматывания': 'Rilevamento aggrovigliamento',
     'Никаких отклонений обнаружено не было;\nобнаружение ИИ было подтверждено как ложная тревога.': 'Nessuna anomalia rilevata;\nmonitoraggio AI confermato come falso allarme.',
@@ -550,16 +558,27 @@ def patch_binary(src, dst, translations):
     items = sorted(translations.items(), key=lambda x: len(x[0].encode('utf-8')), reverse=True)
 
     ok = skip = notfound = 0
+    skipped_report = []
     print("[*] Iniezione traduzioni in corso...")
 
     for ru_str, it_str in items:
         ru_b = ru_str.encode('utf-8')
         it_b = it_str.encode('utf-8')
-        
-        if len(it_b) > len(ru_b):
+
+        # Confronto sui CARATTERI (glifi renderizzati), non sui byte.
+        # Il cirillico in UTF-8 usa 2 byte/carattere, l'italiano 1 byte/carattere:
+        # a parità di byte disponibili l'italiano avrebbe quasi il doppio dei
+        # caratteri, sconfinando visivamente sui widget vicini (bottoni,
+        # slider, ecc.). Per questo il limite va posto sul numero di
+        # caratteri della stringa russa originale.
+        if len(it_str) > len(ru_str) * LUNGHEZZA_TOLLERANZA:
             skip += 1
+            eccesso = len(it_str) - len(ru_str)
+            skipped_report.append((ru_str, it_str, eccesso))
             continue
-            
+
+        # Il padding per riempire il buffer resta comunque in BYTE, perché
+        # stiamo scrivendo direttamente nel buffer a lunghezza fissa del binario.
         padded_it = it_b + b'\x00' * (len(ru_b) - len(it_b))
         
         count = idx = 0
@@ -584,6 +603,18 @@ def patch_binary(src, dst, translations):
 
     with open(dst, 'wb') as f:
         f.write(data)
+
+    print(f"\n[*] Riepilogo: {ok} tradotte, {notfound} non trovate nel binario, {skip} scartate per eccesso caratteri.")
+
+    if skipped_report:
+        print("\n[!] Voci scartate perché la traduzione italiana ha più CARATTERI dell'originale russo:")
+        print("    (queste stringhe restano in russo nella GUI finché non le accorci)\n")
+        # Ordino dalle più critiche (eccesso maggiore) alle meno critiche
+        for ru_str, it_str, eccesso in sorted(skipped_report, key=lambda x: -x[2]):
+            ru_preview = (ru_str[:50] + '…') if len(ru_str) > 50 else ru_str
+            it_preview = (it_str[:50] + '…') if len(it_str) > 50 else it_str
+            print(f"    +{eccesso:3d} car. | RU[{len(ru_str)}]: {ru_preview!r}")
+            print(f"              IT[{len(it_str)}]: {it_preview!r}")
 
 if __name__ == '__main__':
     patch_binary(SRC, DST, TRANSLATIONS)
