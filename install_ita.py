@@ -1,27 +1,9 @@
 #!/usr/bin/env python3
-"""
-Snapmaker U1/J1 - GUI Italian Patcher v1.1
-Traduci l'interfaccia della tua stampante in Italiano in modo sicuro!
-"""
-import sys, os
+"""Diagnostica stringhe non trovate - Snapmaker Italian GUI Patch (standalone)"""
+import re, sys, os, difflib
 
-print("==========================================")
-print("  Snapmaker Italian GUI Patch - Mod v1.5  ")
-print("==========================================\n")
+BAK = '/usr/bin/gui.bak'
 
-SRC  = '/usr/bin/gui'
-BAK  = '/usr/bin/gui.bak'
-DST  = '/tmp/gui_patched'
-
-# Margine di tolleranza sul numero di CARATTERI (non byte) che la stringa
-# italiana può avere in più rispetto a quella russa originale, prima di
-# essere scartata per rischio di sconfinamento grafico sui widget vicini.
-# 1.0  = nessuna tolleranza (stesso numero di caratteri, massima sicurezza)
-# 1.15 = fino al 15% di caratteri in più (buon compromesso, default)
-# 1.30 = più permissivo, più rischio di overlap su testi/bottoni vicini
-LUNGHEZZA_TOLLERANZA = 1.15
-
-# IL TUO DIZIONARIO COMPLETO
 TRANSLATIONS = {
     'Автоматическая дозаправка': 'Cambio automatico filamento',
     'Разрешить автоматическое продолжение печати филаментом другого цвета.': 'Consenti stampa continua con colore diverso.',
@@ -542,112 +524,38 @@ TRANSLATIONS = {
     'На печатной платформе обнаружены возможные остатки._Пожалуйста, проверьте и удалите все остатки клея. Если ничего не обнаружено, нажмите «Continua': 'Possibili residui sul piano_Verificare e rimuovere residui di colla. Se assenti, premere Continua',
     '• Специальные разрешения при активации\n  • Включение этой опции предоставляет вам права на\n    изменение файлов конфигурации принтера. Мы\n    настоятельно не рекомендуем изменять эти настройки,\n    если вы полностью не понимаете функции параметров\n    конфигурации принтера. Произвольные изменения\n    могут привести к сбоям в работе функций устройства,\n    таких как защита от перегрева, калибровка XYZ,\n    выравнивание нагреваемого стола и автоматическая\n    подача филамента.\n  • Modalità sviluppatore\n   позволяет свободно добавлять,\n    удалять или изменять файлы конфигурации устройства,\n    что может привести к потенциальным проблемам,\n    включая, помимо прочего: дефекты заданий печати,\n    непоправимый ущерб принтеру, необратимый вред,\n    а также проблемы с безопасностью и\n    конфиденциальностью данных.\n• Влияние на права и интересы послепродажного\n    обслуживания\n  • Компания Snapmaker не имеет возможности установить\n    или проверить результаты, вытекающие из активации\n    расширенного режима. Включая этот режим, вы\n    признаете и принимаете все связанные с этим риски\n    или последствия и берете на себя полную\n    ответственность за них. В максимальной степени,\n    допустимой действующим законодательством, мы не\n    несем ответственности за любые убытки или риски,\n    возникающие в результате использования или\n    невозможности использования продукта, а также не\n    обязуемся предоставлять техническую поддержку\n    по вопросам или аномалиям, возникающим во время\n    использования продукта, включая, помимо прочего,\n    сбои в работе системы, невозможность выполнения\n    команд или потерю файлов.': "• Permessi speciali all'attivazione\n  • Questa opzione concede i diritti di modifica dei file di configurazione. Si sconsiglia vivamente di modificare queste impostazioni senza conoscerle. Modifiche arbitrarie possono causare guasti come protezione da surriscaldamento, calibrazione XYZ, livellamento piano e alimentazione filamento.\n  • La modalita' avanzata consente di modificare liberamente i file di configurazione, il che puo' causare difetti di stampa, danni irreparabili, problemi di sicurezza e privacy.\n• Impatto sulla garanzia post-vendita\n  • Snapmaker non puo' stabilire o verificare i risultati derivanti dall'attivazione della modalita' avanzata. Attivando questa modalita', si riconoscono e si accettano tutti i rischi. Nella misura massima consentita dalla legge, non siamo responsabili per perdite o rischi derivanti dall'uso del prodotto."
 }
+if not os.path.exists(BAK):
+    print(f"[-] {BAK} non trovato.")
+    sys.exit(1)
 
-def patch_binary(src, dst, translations):
-    if not os.path.exists(src):
-        print(f"[-] Errore: File {src} non trovato!")
-        sys.exit(1)
+with open(BAK, 'rb') as f:
+    data = f.read()
 
-    if not os.path.exists(BAK):
-        print(f"[*] Creazione backup in {BAK}...")
-        os.system(f"cp {src} {BAK}")
+text = data.decode('utf-8', errors='ignore')
+CYRILLIC_RUN = re.compile(
+    '[А-Яа-яЁё][А-Яа-яЁё0-9 .,!?%:;()' + chr(39) + '"' + '«»/\n\\-]*[А-Яа-яЁё0-9.!?%)»]|[А-Яа-яЁё]'
+)
+found_strings = set(m.group(0) for m in CYRILLIC_RUN.finditer(text))
+print(f"[*] Estratte {len(found_strings)} sequenze cirilliche uniche dal binario.\n")
+
+missing = [ru for ru in TRANSLATIONS if ru.encode('utf-8') not in data]
+print(f"[*] Chiavi del dizionario NON trovate letteralmente nel binario: {len(missing)}\n")
+
+for ru in missing:
+    matches = difflib.get_close_matches(ru, found_strings, n=1, cutoff=0.6)
+    print(f"RU (dizionario): {ru!r}")
+    if matches:
+        best = matches[0]
+        print(f"  Piu simile nel binario: {best!r}")
+        sm = difflib.SequenceMatcher(None, ru, best)
+        diff_desc = []
+        for tag, i1, i2, j1, j2 in sm.get_opcodes():
+            if tag != 'equal':
+                diff_desc.append(f"{tag}: dizionario={ru[i1:i2]!r} vs binario={best[j1:j2]!r}")
+        if diff_desc:
+            print("  Differenze: " + " | ".join(diff_desc))
+        else:
+            print("  (identiche?! possibile problema di codifica)")
     else:
-        print(f"[*] Backup già presente: ripristino il binario ORIGINALE (russo) da {BAK} prima di ripatchare...")
-        # cp diretto fallirebbe con "Text file busy" perché il processo gui
-        # è in esecuzione e mappa quell'inode: bisogna prima "liberare" il
-        # nome file (rm) e poi ricrearlo (cp), esattamente come si fa più
-        # sotto per installare il binario patchato.
-        os.system(f"rm -f {src}")
-        os.system(f"cp {BAK} {src}")
-
-    with open(src, 'rb') as f:
-        data = bytearray(f.read())
-
-    # Controllo di sicurezza: se il binario che stiamo per patchare non
-    # contiene più nemmeno una stringa russa banale, vuol dire che il
-    # ripristino dal backup non è andato a buon fine (es. "Text file busy"
-    # silenzioso) e stiamo per rileggere un binario già patchato in italiano.
-    # In quel caso meglio fermarsi con un errore chiaro invece di produrre
-    # silenziosamente "0 tradotte".
-    sonda = 'Отмена'.encode('utf-8')
-    if sonda not in data:
-        print(f"[-] ERRORE: nessuna stringa russa di controllo trovata in {src}.")
-        print(f"    Il binario sembra già patchato (il ripristino da {BAK} potrebbe essere fallito).")
-        print(f"    Verifica manualmente con: cmp {src} {BAK}")
-        sys.exit(1)
-
-    items = sorted(translations.items(), key=lambda x: len(x[0].encode('utf-8')), reverse=True)
-
-    ok = skip = notfound = 0
-    skipped_report = []
-    print("[*] Iniezione traduzioni in corso...")
-
-    for ru_str, it_str in items:
-        ru_b = ru_str.encode('utf-8')
-        it_b = it_str.encode('utf-8')
-
-        # Confronto sui CARATTERI (glifi renderizzati), non sui byte.
-        # Il cirillico in UTF-8 usa 2 byte/carattere, l'italiano 1 byte/carattere:
-        # a parità di byte disponibili l'italiano avrebbe quasi il doppio dei
-        # caratteri, sconfinando visivamente sui widget vicini (bottoni,
-        # slider, ecc.). Per questo il limite va posto sul numero di
-        # caratteri della stringa russa originale.
-        # Per le parole/frasi molto corte una tolleranza puramente
-        # percentuale è troppo rigida (il 15% di 3 caratteri è <1), quindi
-        # garantiamo comunque un margine minimo fisso di 2 caratteri.
-        budget = max(len(ru_str) + 2, int(len(ru_str) * LUNGHEZZA_TOLLERANZA))
-        if len(it_str) > budget:
-            skip += 1
-            eccesso = len(it_str) - len(ru_str)
-            skipped_report.append((ru_str, it_str, eccesso))
-            continue
-
-        # Il padding per riempire il buffer resta comunque in BYTE, perché
-        # stiamo scrivendo direttamente nel buffer a lunghezza fissa del binario.
-        padded_it = it_b + b'\x00' * (len(ru_b) - len(it_b))
-        
-        count = idx = 0
-        while True:
-            pos = data.find(ru_b, idx)
-            if pos == -1: break
-            data[pos:pos+len(ru_b)] = padded_it
-            idx = pos + len(padded_it)
-            count += 1
-            
-        if count > 0: ok += 1
-        else: notfound += 1
-
-    orig_debug = b'/oem/.debug'
-    fake_debug = b'/oem/.dummy'
-    idx = 0
-    while True:
-        pos = data.find(orig_debug, idx)
-        if pos == -1: break
-        data[pos:pos+len(orig_debug)] = fake_debug
-        idx = pos + len(fake_debug)
-
-    with open(dst, 'wb') as f:
-        f.write(data)
-
-    print(f"\n[*] Riepilogo: {ok} tradotte, {notfound} non trovate nel binario, {skip} scartate per eccesso caratteri.")
-
-    if skipped_report:
-        print("\n[!] Voci scartate perché la traduzione italiana ha più CARATTERI dell'originale russo:")
-        print("    (queste stringhe restano in russo nella GUI finché non le accorci)\n")
-        # Ordino dalle più critiche (eccesso maggiore) alle meno critiche
-        for ru_str, it_str, eccesso in sorted(skipped_report, key=lambda x: -x[2]):
-            ru_preview = (ru_str[:50] + '…') if len(ru_str) > 50 else ru_str
-            it_preview = (it_str[:50] + '…') if len(it_str) > 50 else it_str
-            print(f"    +{eccesso:3d} car. | RU[{len(ru_str)}]: {ru_preview!r}")
-            print(f"              IT[{len(it_str)}]: {it_preview!r}")
-
-if __name__ == '__main__':
-    patch_binary(SRC, DST, TRANSLATIONS)
-    print("\n[*] Installazione di sistema in corso...")
-    os.system("touch /oem/.debug") 
-    os.system("killall gui 2>/dev/null")
-    os.system(f"rm -f {SRC}")
-    os.system(f"cp {DST} {SRC}")
-    os.system(f"chmod +x {SRC}")
-    os.system("killall gui 2>/dev/null")
-    print("\n[V] FATTO! L'interfaccia si sta riavviando in Italiano.")
+        print("  Nessuna corrispondenza simile trovata nel binario.")
+    print()
