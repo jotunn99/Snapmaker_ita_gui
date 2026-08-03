@@ -551,6 +551,9 @@ def patch_binary(src, dst, translations):
     if not os.path.exists(BAK):
         print(f"[*] Creazione backup in {BAK}...")
         os.system(f"cp {src} {BAK}")
+    else:
+        print(f"[*] Backup già presente: ripristino il binario ORIGINALE (russo) da {BAK} prima di ripatchare...")
+        os.system(f"cp {BAK} {src}")
 
     with open(src, 'rb') as f:
         data = bytearray(f.read())
