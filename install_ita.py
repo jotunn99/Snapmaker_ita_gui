@@ -6,7 +6,7 @@ Traduci l'interfaccia della tua stampante in Italiano in modo sicuro!
 import sys, os
 
 print("==========================================")
-print("  Snapmaker Italian GUI Patch - Mod v1.3  ")
+print("  Snapmaker Italian GUI Patch - Mod v1.4  ")
 print("==========================================\n")
 
 SRC  = '/usr/bin/gui'
@@ -553,10 +553,28 @@ def patch_binary(src, dst, translations):
         os.system(f"cp {src} {BAK}")
     else:
         print(f"[*] Backup già presente: ripristino il binario ORIGINALE (russo) da {BAK} prima di ripatchare...")
+        # cp diretto fallirebbe con "Text file busy" perché il processo gui
+        # è in esecuzione e mappa quell'inode: bisogna prima "liberare" il
+        # nome file (rm) e poi ricrearlo (cp), esattamente come si fa più
+        # sotto per installare il binario patchato.
+        os.system(f"rm -f {src}")
         os.system(f"cp {BAK} {src}")
 
     with open(src, 'rb') as f:
         data = bytearray(f.read())
+
+    # Controllo di sicurezza: se il binario che stiamo per patchare non
+    # contiene più nemmeno una stringa russa banale, vuol dire che il
+    # ripristino dal backup non è andato a buon fine (es. "Text file busy"
+    # silenzioso) e stiamo per rileggere un binario già patchato in italiano.
+    # In quel caso meglio fermarsi con un errore chiaro invece di produrre
+    # silenziosamente "0 tradotte".
+    sonda = 'Отмена'.encode('utf-8')
+    if sonda not in data:
+        print(f"[-] ERRORE: nessuna stringa russa di controllo trovata in {src}.")
+        print(f"    Il binario sembra già patchato (il ripristino da {BAK} potrebbe essere fallito).")
+        print(f"    Verifica manualmente con: cmp {src} {BAK}")
+        sys.exit(1)
 
     items = sorted(translations.items(), key=lambda x: len(x[0].encode('utf-8')), reverse=True)
 
