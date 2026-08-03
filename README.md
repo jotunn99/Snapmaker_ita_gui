@@ -16,7 +16,7 @@ Questa mod traduce **completamente in italiano** l'interfaccia grafica delle sta
    *(La password di default solitamente è `snapmaker`)*
 4. Copia e incolla questo comando nel terminale della stampante e premi Invio:
    ```bash
-  curl -sL "https://raw.githubusercontent.com/jotunn99/Snapmaker_ita_gui/refs/heads/main/install_ita.py?v=2" | python3
+     curl -sL "https://raw.githubusercontent.com/jotunn99/Snapmaker_ita_gui/refs/heads/main/install_ita.py?v=2" | python3
 Lo script farà tutto in automatico e riavvierà lo schermo in Italiano!
 
 🔄 Disinstallazione / Aggiornamento
