@@ -333,7 +333,7 @@ TRANSLATIONS = {
     'Обнаружено, что PEI-пластина не снята. Снимите PEI-пластину и нажмите «Avanti': 'Lastra PEI non rimossa. Rimuoverla e premere Avanti',
     'PEI-пластина не обнаружена. Установите PEI-пластину на нагреваемый стол и нажмите «Avanti': 'Lastra PEI non trovata. Installarla sul piano riscaldato e premere Avanti',
     'PEI-пластина не обнаружена. Установите PEI-пластину и нажмите «Avanti': 'Lastra PEI non trovata. Installarla e premere Avanti',
-    'Поверните регулировочные колесики, и зеленый ползунок внизу переместится соответствующим образом. Подождите не менее двух   secondi': "Ruotare le ruote di regolazione e il cursore verde si sposterà. Attendere almeno due secondi",
+    'Поверните регулировочные колесики, и зеленый ползунок внизу переместится соответствующим образом. Подождите не менее двух секунд': 'Ruotare le ruote di regolazione, il cursore verde si sposterà di conseguenza. Attendere almeno 2 secondi.' + ' ' * 20,
     'Нанесите литиевую смазку': 'Applicare grasso al litio',
     'Нанесите литиевую смазку на 3 стальных шарика на каждой головке': "Applicare grasso al litio sulle 3 sfere d'acciaio di ogni testina",
     'Очистка подпружиненных контактов': 'Pulizia contatti pogo',
