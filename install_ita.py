@@ -6,7 +6,7 @@ Traduci l'interfaccia della tua stampante in Italiano in modo sicuro!
 import sys, os
 
 print("==========================================")
-print("  Snapmaker Italian GUI Patch - Mod v1.7  ")
+print("  Snapmaker Italian GUI Patch - Mod v1.8  ")
 print("==========================================\n")
 
 SRC  = '/usr/bin/gui'
@@ -23,6 +23,22 @@ LUNGHEZZA_TOLLERANZA = 1.15
 
 # IL TUO DIZIONARIO COMPLETO
 TRANSLATIONS = {
+    'Аномалия печати': 'Anomalia di stampa',
+    
+    # Variante combinata con Titolo (Testine 1, 2, 3 e 4)
+    'Аномалия печати_Проверьте, не сломан ли филамент внутри трубки для печатающей головки 1, не запутался ли он на катушке и не засорилась ли сама головка. После устранения неисправностей нажмите, чтобы возобновить печать. Если проблема не устранена, обратитесь в техническую поддержку.': 'Anomalia di stampa_Verificare se il filamento nel tubo testina 1 è rotto, aggrovigliato o se la testina è ostruita. Risolto, premere per riprendere. Se persiste, contattare il supporto.' + ' ' * 20,
+    'Аномалия печати_Проверьте, не сломан ли филамент внутри трубки для печатающей головки 2, не запутался ли он на катушке и не засорилась ли сама головка. После устранения неисправностей нажмите, чтобы возобновить печать. Если проблема не устранена, обратитесь в техническую поддержку.': 'Anomalia di stampa_Verificare se il filamento nel tubo testina 2 è rotto, aggrovigliato o se la testina è ostruita. Risolto, premere per riprendere. Se persiste, contattare il supporto.' + ' ' * 20,
+    'Аномалия печати_Проверьте, не сломан ли филамент внутри трубки для печатающей головки 3, не запутался ли он на катушке и не засорилась ли сама головка. После устранения неисправностей нажмите, чтобы возобновить печать. Если проблема не устранена, обратитесь в техническую поддержку.': 'Anomalia di stampa_Verificare se il filamento nel tubo testina 3 è rotto, aggrovigliato o se la testina è ostruita. Risolto, premere per riprendere. Se persiste, contattare il supporto.' + ' ' * 20,
+    'Аномалия печати_Проверьте, не сломан ли филамент внутри трубки для печатающей головки 4, не запутался ли он на катушке и не засорилась ли сама головка. После устранения неисправностей нажмите, чтобы возобновить печать. Если проблема не устранена, обратитесь в техническую поддержку.': 'Anomalia di stampa_Verificare se il filamento nel tubo testina 4 è rotto, aggrovigliato o se la testina è ostruita. Risolto, premere per riprendere. Se persiste, contattare il supporto.' + ' ' * 20,
+
+    # Variante corpo separato dal Titolo (Testine 1, 2, 3 e 4)
+    'Проверьте, не сломан ли филамент внутри трубки для печатающей головки 1, не запутался ли он на катушке и не засорилась ли сама головка. После устранения неисправностей нажмите, чтобы возобновить печать. Если проблема не устранена, обратитесь в техническую поддержку.': 'Verificare se il filamento nel tubo testina 1 è rotto, aggrovigliato o se la testina è ostruita. Risolto, premere per riprendere. Se persiste, contattare il supporto.' + ' ' * 20,
+    'Проверьте, не сломан ли филамент внутри трубки для печатающей головки 2, не запутался ли он на катушке и не засорилась ли сама головка. После устранения неисправностей нажмите, чтобы возобновить печать. Если проблема не устранена, обратитесь в техническую поддержку.': 'Verificare se il filamento nel tubo testina 2 è rotto, aggrovigliato o se la testina è ostruita. Risolto, premere per riprendere. Se persiste, contattare il supporto.' + ' ' * 20,
+    'Проверьте, не сломан ли филамент внутри трубки для печатающей головки 3, не запутался ли он на катушке и не засорилась ли сама головка. После устранения неисправностей нажмите, чтобы возобновить печать. Если проблема не устранена, обратитесь в техническую поддержку.': 'Verificare se il filamento nel tubo testina 3 è rotto, aggrovigliato o se la testina è ostruita. Risolto, premere per riprendere. Se persiste, contattare il supporto.' + ' ' * 20,
+    'Проверьте, не сломан ли филамент внутри трубки для печатающей головки 4, не запутался ли он на катушке и не засорилась ли сама головка. После устранения неисправностей нажмите, чтобы возобновить печать. Если проблема не устранена, обратитесь в техническую поддержку.': 'Verificare se il filamento nel tubo testina 4 è rotto, aggrovigliato o se la testina è ostruita. Risolto, premere per riprendere. Se persiste, contattare il supporto.' + ' ' * 20,
+    
+    # Variante dinamica di sicurezza (se usano la variabile %d)
+    'Аномалия печати_Проверьте, не сломан ли филамент внутри трубки для печатающей головки %d, не запутался ли он на катушке и не засорилась ли сама головка. После устранения неисправностей нажмите, чтобы возобновить печать. Если проблема не устранена, обратитесь в техническую поддержку.': 'Anomalia di stampa_Verificare se il filamento nel tubo testina %d è rotto, aggrovigliato o se la testina è ostruita. Risolto, premere per riprendere. Se persiste, contattare il supporto.' + ' ' * 20,
     'Автоматическая дозаправка': 'Cambio automatico filamento',
     'Разрешить автоматическое продолжение печати филаментом другого цвета.': 'Consenti stampa continua con colore diverso.',
     'При окончании филамента принтер может автоматически переключиться на филамент того же бренда и типа, но другого цвета, чтобы продолжить печать.': 'Se esaurito, passa a un filamento della stessa marca e tipo, ma di colore diverso.',
