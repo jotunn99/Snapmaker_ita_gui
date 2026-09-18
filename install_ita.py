@@ -24,6 +24,18 @@ LUNGHEZZA_TOLLERANZA = 1.15
 # IL TUO DIZIONARIO COMPLETO
 TRANSLATIONS = {
 
+    'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 1. Проверьте, не отключен ли датчик калибровки. Для получения помощи обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 1 anomalo. Controlla se è scollegato. Contatta il supporto per assistenza.' + ' ' * 20,
+    'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 2. Проверьте, не отключен ли датчик калибровки. Для получения помощи обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 2 anomalo. Controlla se è scollegato. Contatta il supporto per assistenza.' + ' ' * 20,
+    'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 3. Проверьте, не отключен ли датчик калибровки. Для получения помощи обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 3 anomalo. Controlla se è scollegato. Contatta il supporto per assistenza.' + ' ' * 20,
+    'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 4. Проверьте, не отключен ли датчик калибровки. Для получения помощи обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 4 anomalo. Controlla se è scollegato. Contatta il supporto per assistenza.' + ' ' * 20,
+
+    'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 1. Данные датчика вышли за допустимый диапазон. Обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 1 anomalo. Dati fuori range. Contattare il supporto tecnico.' + ' ' * 20,
+    'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 2. Данные датчика вышли за допустимый диапазон. Обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 2 anomalo. Dati fuori range. Contattare il supporto tecnico.' + ' ' * 20,
+    'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 3. Данные датчика вышли за допустимый диапазон. Обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 3 anomalo. Dati fuori range. Contattare il supporto tecnico.' + ' ' * 20,
+    'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 4. Данные датчика вышли за допустимый диапазон. Обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 4 anomalo. Dati fuori range. Contattare il supporto tecnico.' + ' ' * 20,
+
+    'Системная аномалия_Загрузка файла в облачное хранилище не удалась. Проверьте подключение к сети и повторите попытку. Если проблема сохраняется, обратитесь в службу технической поддержки.': 'Anomalia sistema_Upload file cloud fallito. Verificare rete. Se persiste, contattare supporto.' + ' ' * 20,
+
     # --- INTERFACCIA, AVVISI E MENU ---
     'Сообщить о проблеме с ИИ-мониторингом': 'Segnala problema AI',
     'Температура в камере слишком высокая. Это может привести к засорению экструдера. Продолжить печать?': 'Temp. camera troppo alta. Rischio intasamento estrusore. Continuare?' + ' ' * 20,
