@@ -24,6 +24,12 @@ LUNGHEZZA_TOLLERANZA = 1.15
 # IL TUO DIZIONARIO COMPLETO
 TRANSLATIONS = {
 
+    'Об устройстве': 'Informazioni',
+    'О программе': 'Info',
+    'О принтере': 'Info',
+    'Информация': 'Info',
+    'About': 'Info',
+
     'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 1. Проверьте, не отключен ли датчик калибровки. Для получения помощи обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 1 anomalo. Controlla se è scollegato. Contatta il supporto per assistenza.' + ' ' * 20,
     'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 2. Проверьте, не отключен ли датчик калибровки. Для получения помощи обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 2 anomalo. Controlla se è scollegato. Contatta il supporto per assistenza.' + ' ' * 20,
     'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 3. Проверьте, не отключен ли датчик калибровки. Для получения помощи обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 3 anomalo. Controlla se è scollegato. Contatta il supporto per assistenza.' + ' ' * 20,
@@ -1006,7 +1012,7 @@ TRANSLATIONS = {
     'Аномалия обнаружения печатного стола_Обнаружена аномалия в работе нагревательного стола. Обратитесь в службу технической поддержки.': 'Anomalia piano riscaldato_Anomalia rilevata. Contattare il supporto.',
     'Системная аномалия_Печать не возобновилась после отключения электроэнергии.': 'Anomalia sistema_Stampa non ripresa dopo interruzione alimentazione.',
     'Аномалия возврата в исходное положение_Датчик возврата в исходное положение не сработал. Проверьте сопло на наличие остатков нити и очистите его перед повторной попыткой. Если проблема сохраняется, обратитесь в службу технической поддержки.': 'Anomalia homing_Sensore homing non attivato. Controllare e pulire ugello. Se persiste, contattare supporto.',
-    'Системная аномалия_Загрузка файла в облачное хранилище не удалась. Проверьте подключение к сети и повторите попытку. Если проблема сохраняется, обратитесь в службу технической поддержки.': 'Anomalia система_Upload file cloud fallito. Verificare rete. Se persiste, contattare supporto.',
+    'Системная аномалия_Загрузка файла в облачное хранилище не удалась. Проверьте подключение к сети и повторите попытку. Если проблема сохраняется, обратитесь в службу технической поддержки.': 'Anomalia sistema_Upload file cloud fallito. Verificare rete. Se persiste, contattare supporto.' + ' ' * 20,
     'Аномалия экструзии_Сбой подачи в подающем механизме 1. Возможно, филамент запутался, застрял в экструзионных шестернях или засорилось сопло. Устраните проблему и повторите попытку.': 'Anomalia estrusione_Errore alimentatore 1. Filamento aggrovigliato, bloccato o ugello intasato. Risolvere e riprovare.',
     'Аномалия замены печатной головки_Печатающая головка 1 отсоединена. Установите её обратно вручную, затем нажмите для возобновления задания. Если ошибка не устранена, обратитесь в техническую поддержку.': 'Anomalia cambio testina_Testina 1 scollegata. Reinstallare e premere per riprendere. Se persiste, contattare supporto.',
     'Нераспознанные команды G-кода_Файл для печати содержит команды G-кода, не поддерживаемые данным устройством. Печать прекращена.': 'Comandi G-code non supportati_Il file contiene comandi non supportati. Stampa interrotta.',
