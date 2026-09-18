@@ -23,7 +23,7 @@ LUNGHEZZA_TOLLERANZA = 1.15
 
 # IL TUO DIZIONARIO COMPLETO
 TRANSLATIONS = {
-    'Аномалия печати': 'Anomalia di stampa',
+    'Аномалия печати': 'Anomalia stampa',
     
     # Variante combinata con Titolo (Testine 1, 2, 3 e 4)
     'Аномалия печати_Проверьте, не сломан ли филамент внутри трубки для печатающей головки 1, не запутался ли он на катушке и не засорилась ли сама головка. После устранения неисправностей нажмите, чтобы возобновить печать. Если проблема не устранена, обратитесь в техническую поддержку.': 'Anomalia di stampa_Verificare se il filamento nel tubo testina 1 è rotto, aggrovigliato o se la testina è ostruita. Risolto, premere per riprendere. Se persiste, contattare il supporto.' + ' ' * 20,
