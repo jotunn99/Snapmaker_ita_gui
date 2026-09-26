@@ -24,7 +24,7 @@ LUNGHEZZA_TOLLERANZA = 1.15
 # IL TUO DIZIONARIO COMPLETO
 TRANSLATIONS = {
 
-    'Об устройстве': 'Informazioni',
+    'Модель устройства': 'Informazioni',
     'О программе': 'Info',
     'О принтере': 'Info',
     'Информация': 'Info',
@@ -1027,8 +1027,10 @@ TRANSLATIONS = {
     'Обнаружен возможный дефект спагетти_Пожалуйста, осмотрите модello. Если обнаруженные дефекты допустимы или дефекты не найдены, нажмите «Continua': 'Possibile difetto spaghetti_Ispezionare il modello. Se accettabile, premere Continua',
     'На печатной платформе обнаружены возможные остатки._Пожалуйста, проверьте и удалите все остатки клея. Если ничего не обнаружено, нажмите «Continua': 'Possibili residui sul piano_Verificare e rimuovere residui di colla. Se assenti, premere Continua',
     '• Специальные разрешения при активации\n  • Включение этой опции предоставляет вам права на\n    изменение файлов конфигурации принтера. Мы\n    настоятельно не рекомендуем изменять эти настройки,\n    если вы полностью не понимаете функции параметров\n    конфигурации принтера. Произвольные изменения\n    могут привести к сбоям в работе функций устройства,\n    таких как защита от перегрева, калибровка XYZ,\n    выравнивание нагреваемого стола и автоматическая\n    подача филамента.\n  • Modalità sviluppatore\n   позволяет свободно добавлять,\n    удалять или изменять файлы конфигурации устройства,\n    что может привести к потенциальным проблемам,\n    включая, помимо прочего: дефекты заданий печати,\n    непоправимый ущерб принтеру, необратимый вред,\n    а также проблемы с безопасностью и\n    конфиденциальностью данных.\n• Влияние на права и интересы послепродажного\n    обслуживания\n  • Компания Snapmaker не имеет возможности установить\n    или проверить результаты, вытекающие из активации\n    расширенного режима. Включая этот режим, вы\n    признаете и принимаете все связанные с этим риски\n    или последствия и берете на себя полную\n    ответственность за них. В максимальной степени,\n    допустимой действующим законодательством, мы не\n    несем ответственности за любые убытки или риски,\n    возникающие в результате использования или\n    невозможности использования продукта, а также не\n    обязуемся предоставлять техническую поддержку\n    по вопросам или аномалиям, возникающим во время\n    использования продукта, включая, помимо прочего,\n    сбои в работе системы, невозможность выполнения\n    команд или потерю файлов.': "• Permessi speciali all'attivazione\n  • Questa opzione concede i diritti di modifica dei file di configurazione. Si sconsiglia vivamente di modificare queste impostazioni senza conoscerle. Modifiche arbitrarie possono causare guasti come protezione da surriscaldamento, calibrazione XYZ, livellamento piano e alimentazione filamento.\n  • La modalita' avanzata consente di modificare liberamente i file di configurazione, il che puo' causare difetti di stampa, danni irreparabili, problemi di sicurezza e privacy.\n• Impatto sulla garanzia post-vendita\n  • Snapmaker non puo' stabilire o verificare i risultati derivanti dall'attivazione della modalita' avanzata. Attivando questa modalita', si riconoscono e si accettano tutti i rischi. Nella misura massima consentita dalla legge, non siamo responsabili per perdite o rischi derivanti dall'uso del prodotto."
-    # === QUASI-MATCH AGGIORNATI AL NUOVO FIRMWARE ===
-    'Модель устройства': 'Informazioni',
+    
+    # === QUASI-MATCH AGGIORNATI AL NUOVO FIRMWARE === #
+    
+    'Модель устройства': 'Informazioni'
     'Сообщить о проблеме ИИ-мониторинга': 'Segnala problema AI',
     'Начало печати': 'Inizio stampa', 
     'Подключиться сейчас': 'Connetti ora',
@@ -1036,12 +1038,10 @@ TRANSLATIONS = {
     'Продолжить': 'Continua', 
     'Руководство по загрузке филамента': 'Guida carico fil.',
     
-    # Hanno rimosso i numeri delle testine per queste voci
     'Очистка сопла': 'Pulire ugello',
     'Калибровка устройства': 'Calibr. dispositivo',
     'Проверка печатных головок...': 'Controllo testine...',
     
-    # Stringhe tagliate e accorciate dinamicamente dai programmatori
     'Нажимайте кнопки ниже, чтобы отрегулировать положение механизма смены печатающих головок до тех пор, пока установочный штифт не окажется по центру гнезда печатающей головки. После выравнивания нажмите ': "Regola il meccanismo finché il perno è al centro del vano testina. Dopo l'allineamento premi " + " " * 20,
     'Нажмите ': 'Premi ',
     'пластину на нагреваемый стол и нажмите ': 'la lastra sul piano riscaldato e premi ' + " " * 20,
@@ -1052,7 +1052,6 @@ TRANSLATIONS = {
     'Калибровка возврата в исходное положение': 'Calibrazione homing',
     'Пожалуйста, выберите хотя бы одну печатающую головку для возврата материала.': 'Seleziona almeno una testina per il ritorno del materiale.' + " " * 20,
 
-    # Il mega-blocco TOS che è stato troncato a metà
     'не имеет возможности установить\n    или проверить результаты, вытекающие из активации\n    расширенного режима. Включая этот режим, вы\n    признаете и принимаете все связанные с этим риски\n    или последствия и берете на себя полную\n    ответственность за них. В максимальной степени,\n    допустимой действующим законодательством, мы не\n    несем ответственности за любые убытки или риски,\n    возникающие в результате использования или\n    невозможности использования продукта, а также не\n    обязуемся предоставлять техническую поддержку\n    по вопросам или аномалиям, возникающим во время\n    использования продукта, включая, помимо прочего,\n    сбои в работе системы, невозможность выполнения\n    команд или потерю файлов.\n  ': "non può stabilire o verificare\n    i risultati derivanti dall'attivazione\n    della modalità avanzata. Attivandola,\n    accetti tutti i rischi e le responsabilità.\n    Nella misura massima consentita dalla\n    legge, decliniamo ogni responsabilità\n    per eventuali danni o rischi derivanti\n    dall'uso del prodotto, e non forniremo\n    supporto tecnico per anomalie o guasti\n    di sistema, comandi non eseguiti o\n    perdita di file.\n  " + " " * 20,
 }
 
