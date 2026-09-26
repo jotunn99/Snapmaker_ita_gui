@@ -28,6 +28,8 @@ TRANSLATIONS = {
     'О программе': 'Info',
     'О принтере': 'Info',
     'Информация': 'Info',
+    'Стандартное': 'Standard',
+    'Механизм подачи филамента': 'Caricamento filamento',
 
     'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 1. Проверьте, не отключен ли датчик калибровки. Для получения помощи обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 1 anomalo. Controlla se è scollegato. Contatta il supporto per assistenza.' + ' ' * 20,
     'Аномалия калибровки_Аномалия датчика калибровки печатающей головки 2. Проверьте, не отключен ли датчик калибровки. Для получения помощи обратитесь в техническую поддержку.': 'Errore calibrazione_Sensore testina 2 anomalo. Controlla se è scollegato. Contatta il supporto per assistenza.' + ' ' * 20,
