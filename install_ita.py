@@ -1044,11 +1044,11 @@ TRANSLATIONS = {
     
     'Нажимайте кнопки ниже, чтобы отрегулировать положение механизма смены печатающих головок до тех пор, пока установочный штифт не окажется по центру гнезда печатающей головки. После выравнивания нажмите ': "Regola il meccanismo finché il perno è al centro del vano testina. Dopo l'allineamento premi " + " " * 20,
     'Нажмите ': 'Premi ',
-    'пластину на нагреваемый стол и нажмите ': 'la lastra sul piano riscaldato e premi ' + " " * 20,
-    'пластина не обнаружена. Установите ': 'lastra non trovata. Installa ' + " " * 20,
-    'Не удалось получить ': 'Impossibile avere ' + " " * 20,
+    'пластину на нагреваемый стол и нажмите ': 'la lastra sul piano riscaldato e premi ',
+    'пластина не обнаружена. Установите ': 'lastra non trovata. Installa ',
+    'Не удалось получить ': 'Impossibile avere ',
     'код доступа': 'Codice acc.',
-    'работа служб учетной записи будет прервана.': 'i servizi account verranno interrotti.' + " " * 20,
+    'работа служб учетной записи будет прервана.': 'i servizi account verranno interrotti.',
     'Калибровка возврата в исходное положение': 'Calibrazione homing',
     'Пожалуйста, выберите хотя бы одну печатающую головку для возврата материала.': 'Seleziona almeno una testina per il ritorno del materiale.' + " " * 20,
 
