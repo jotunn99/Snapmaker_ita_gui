@@ -1055,6 +1055,24 @@ TRANSLATIONS = {
     'Пожалуйста, выберите хотя бы одну печатающую головку для возврата материала.': 'Seleziona almeno una testina per il ritorno del materiale.' + " " * 20,
 
     'не имеет возможности установить\n    или проверить результаты, вытекающие из активации\n    расширенного режима. Включая этот режим, вы\n    признаете и принимаете все связанные с этим риски\n    или последствия и берете на себя полную\n    ответственность за них. В максимальной степени,\n    допустимой действующим законодательством, мы не\n    несем ответственности за любые убытки или риски,\n    возникающие в результате использования или\n    невозможности использования продукта, а также не\n    обязуемся предоставлять техническую поддержку\n    по вопросам или аномалиям, возникающим во время\n    использования продукта, включая, помимо прочего,\n    сбои в работе системы, невозможность выполнения\n    команд или потерю файлов.\n  ': "non può stabilire o verificare\n    i risultati derivanti dall'attivazione\n    della modalità avanzata. Attivandola,\n    accetti tutti i rischi e le responsabilità.\n    Nella misura massima consentita dalla\n    legge, decliniamo ogni responsabilità\n    per eventuali danni o rischi derivanti\n    dall'uso del prodotto, e non forniremo\n    supporto tecnico per anomalie o guasti\n    di sistema, comandi non eseguiti o\n    perdita di file.\n  " + " " * 20,
+    
+    # === ULTIME STRINGHE RESIDUE (Slicing, Ugelli, Filtro) ===
+    
+    'Не удалось начать печать': 'Errore avvio stampa',
+    ' не соответствует настройкам файла слайсера': ' diverge dalle impostazioni dello slicer',
+    'Отправлено успешно': 'Inviato con successo',
+    ' замену фильтра?\nСчетчик времени работы фильтра будет сброшен и запущен заново. Это действие нельзя отменить.\n': ' sostituire il filtro?\nIl timer del filtro verrà azzerato. Questa azione è irreversibile.\n' + ' ' * 20,
+    'Подтвердите замену': 'Conferma cambio',
+    'Счетчик времени работы фильтра сброшен': 'Contatore del filtro aria resettato',
+    'значок обновления, чтобы вернуть держатель филамента в исходное положение.': "l'icona aggiorna per azzerare la posizione del portafilamento." + ' ' * 20,
+    'Высокопоточное': 'Alto flusso',
+    'Высокопоточное сопло': 'Ugello alto flusso',
+    ' сопла': ' ugello',
+    'Подтверждение конфигурации сопла': 'Conferma config. ugello',
+    'Принтер не может автоматически определить тип сопла. Убедитесь, что указанная ниже конфигурация сопла соответствует оборудованию, установленному на печатающей головке': "Impossibile rilevare in automatico il tipo di ugello. Verifica che la configurazione indicata corrisponda all'hardware installato." + ' ' * 20,
+    'Нарезка выполнена для высокопоточного сопла, но выбрано стандартное': 'Slicing per ugello alto flusso, ma selezionato standard.' + ' ' * 20,
+    'Нарезка выполнена для стандартного сопла, но выбрано высокопоточное': 'Slicing per ugello standard, ma selezionato alto flusso.' + ' ' * 20,
+    'Назад': 'Ritorna',
 }
 
 def patch_binary(src, dst, translations):
